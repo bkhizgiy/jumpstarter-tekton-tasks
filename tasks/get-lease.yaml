@@ -28,6 +28,7 @@ spec:
     - computeResources: {}
       image: 'quay.io/jumpstarter-dev/jumpstarter:latest'
       name: acquire-lease
+      args: ["$(params.exporter-labels[*])"]
       script: |
         #!/usr/bin/env bash
          set -eux
