@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   name: jumpstarter-release-lease
-  namespace: jumpstarter-pipelines
 spec:
   params:
     - description: The lease to be released.
@@ -24,7 +23,7 @@ spec:
          export JMP_LEASE_ID=$(params.jmp-lease-id)
 
          # Switch to the specified Jumpstarter client configuration
-         jmp client use-config "$(params.client-name)"
+         jmp client config use "$(params.client-name)"
          echo "Using Jumpstarter client configuration: $(params.client-name)"
 
          # Release the lease associated with the provided lease ID
