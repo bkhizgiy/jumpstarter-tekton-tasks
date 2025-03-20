@@ -41,11 +41,11 @@ spec:
          CLIENT_LEASE_CMD="jmp client lease request"
          for label in "$@"; do
            IFS='=' read -r KEY VAL <<< "$label"
-           CLIENT_LEASE_CMD+=" -l $KEY $VAL"
+           CLIENT_LEASE_CMD+=" -l $KEY=$VAL"
          done
 
          # Request a lease
-         JMP_LEASE_ID=$(timeout "$(params.timeout)" $CLIENT_LEASE_CMD)
+         JMP_LEASE_ID=$(timeout "$(params.timeout)" $CLIENT_LEASE_CMD -o name) 
 
          # Output the lease ID to the Tekton results
          echo -n "$JMP_LEASE_ID" > /tekton/results/jmp-lease-id
