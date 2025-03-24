@@ -24,7 +24,7 @@ spec:
         set -eux
 
         # Use to the specified Jumpstarter client configuration
-        jmp client config use "$(params.client-name)"
+        jmp config client use "$(params.client-name)"
         echo "Using Jumpstarter client configuration: $(params.client-name)"
 
         # Set the Jumpstarter lease environment variable
@@ -37,7 +37,7 @@ spec:
         ls -la
 
         # Execute the script commands within the Jumpstarter shell
-        jmp client shell <<-EOF
+        jmp shell --lease "${params.jmp-lease-id}" <<-EOF
           $(params.jmp-jScript)
         EOF
 
