@@ -43,7 +43,7 @@ spec:
         cd /workspace/source
 
         # Execute the script commands within the Jumpstarter shell
-        jmp shell --lease "${params.jmp-lease-id}" <<-EOF
+        jmp shell --lease "${JMP_LEASE}" <<-EOF
           $(params.jmp-jScript)
         EOF
 
