@@ -14,10 +14,17 @@ spec:
     - description: The commands to run.
       name: jmp-jScript
       type: string
-    
+    - description: Image to use.
+      name: image
+      type: string
+      default: 'quay.io/jumpstarter-dev/jumpstarter:latest'
+    - description: User home for the provided image
+      name: home
+      type: string
+      default: '/root'
   steps:
     - computeResources: {}
-      image: 'quay.io/jumpstarter-dev/jumpstarter:latest'
+      image: "$(params.image)"
       name: jmp-run-command
       script: |
         #!/bin/bash
@@ -43,7 +50,7 @@ spec:
         echo "The jScript commands were successfully executed."
   workspaces:
     - description: Workspace for mounting Jumpstarter client files.
-      mountPath: /root/.config/jumpstarter/clients
+      mountPath: "$(params.home)/.config/jumpstarter/clients"
       name: jumpstarter-client-secret
       readOnly: true
     - description: Workspace containing the source code / build images
