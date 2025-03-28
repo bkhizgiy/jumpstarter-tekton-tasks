@@ -34,7 +34,6 @@ spec:
         echo "Running: $(params.jmp-jScript)"
 
         cd /workspace/source
-        ls -la
 
         # Execute the script commands within the Jumpstarter shell
         jmp shell --lease "${params.jmp-lease-id}" <<-EOF
